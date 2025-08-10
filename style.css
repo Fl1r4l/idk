@@ -198,3 +198,26 @@ body {
     align-items: center;
     min-height: 100vh
 }
+/* .delete_task{
+    animation: delete_task1 1s 1;
+}
+@keyframes delete_task1 {
+    0%{
+        opacity: 1;
+    }
+    99%{
+        opacity: 0;
+    }
+    /* 100%{
+        display: none;
+    } */
+    .delete_task {
+        animation: del 1s 1;
+        display: none;
+    }
+    @keyframes del {
+        99% {
+            opacity: 0;
+        }
+    }
+ 

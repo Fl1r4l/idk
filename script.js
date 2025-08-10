@@ -2,6 +2,13 @@ let textinput = document.querySelector(".input-field__input")
 let button = document.querySelector(".input-field__button")
 let apptodo = document.querySelector(".app-todo")
 let conttask = 1
+
+function deleteTask (nymberTask) {
+    console.log(nymberTask);
+    let task = document.querySelectorAll(".app-todo__task")[nymberTask-1]
+    task.classList.add("delete_task") 
+    
+}
 function createElement () {
     const task = document.createElement("div")
     task.className = "app-todo__task"
@@ -9,6 +16,11 @@ function createElement () {
     const checkbox = document.createElement("input")
     checkbox.className = "app-todo__checkbox"
     checkbox.type = "checkbox"
+    checkbox.addEventListener("click",(function(localCount) {
+    return function() {
+        deleteTask(localCount)
+    };
+    })(conttask))
 
     const p = document.createElement("p")
     p.className = "app-todo__text"
@@ -16,7 +28,7 @@ function createElement () {
     const div_musorochka = document.createElement("div")
     div_musorochka.addEventListener("click",(function(localCount) {
     return function() {
-        alert(localCount);
+        deleteTask(localCount)
     };
 })(conttask))
     const musorka = document.createElement("img")
