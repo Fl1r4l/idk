@@ -1,36 +1,93 @@
-let button = document.querySelector(".button")
-let loader = document.querySelector(".loader")
-button.addEventListener("click", async function () {
-    button.style.display = "none"
-    loader.style.display = "block"
-    const quoteObj = await getQuote()
-    blocknasaite(quoteObj.quoteText, quoteObj.quoteAuthor)
-    button.style.display = "block"
-    loader.style.display = "none"
-})
-async function getQuote() {
-    const apiUrl = "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=ru";
-    try {
-        const response = await fetch(apiUrl);
-        const result = await response.json();
-        console.log(result);
-        return result
-    } catch (error) {
-        console.error('Ошибка:', error);
+let textinput = document.querySelector(".input-field__input")
+let button = document.querySelector(".input-field__button")
+let apptodo = document.querySelector(".app-todo")
+let conttask = 1
+function createElement () {
+    const task = document.createElement("div")
+    task.className = "app-todo__task"
+    
+    const checkbox = document.createElement("input")
+    checkbox.className = "app-todo__checkbox"
+    checkbox.type = "checkbox"
+
+    const p = document.createElement("p")
+    p.className = "app-todo__text"
+    p.innerHTML = textinput.value
+    const div_musorochka = document.createElement("div")
+    div_musorochka.addEventListener("click",(function(localCount) {
+    return function() {
+        alert(localCount);
+    };
+})(conttask))
+    const musorka = document.createElement("img")
+    musorka.src = "https://foxkodland.github.io/react-todo/icons/icon-basket.png"
+    div_musorochka.className = "app-todo__task-icon"
+    div_musorochka.append(musorka)
+
+    const div_pencil = document.createElement("div")
+    const pencil = document.createElement("img")
+    pencil.src = "https://foxkodland.github.io/react-todo/icons/icon-pencil.png"
+    div_pencil.className = "app-todo__task-icon"
+    div_pencil.append(pencil)
+
+
+
+    task.append(checkbox)
+    task.append(p)
+    task.append(div_musorochka)
+    task.append(div_pencil)
+    apptodo.append(task)
+
+}
+
+button.addEventListener("click", function() {
+    console.log(textinput.value);
+    if (textinput.value == "") {
+        alert("你不能讓它空")
+        return
     }
-}
-function blocknasaite(quote, quoteAuthor) {
-    let newElement = document.createElement("div")
-    newElement.classList.add("quote")
-    let newP1Element = document.createElement("p")
-    newP1Element.classList.add("quote-text")
-    newP1Element.textContent = quote
-    let newP2Element = document.createElement("p")
-    newP2Element.innerHTML = quoteAuthor
-    newP2Element.classList.add("quote-author")
-    newElement.appendChild(newP1Element)
-    newElement.appendChild(newP2Element)
-    let body = document.querySelector("body")
-    body.appendChild(newElement)
-}
-// getQuote();
+    conttask+=1
+    createElement()
+    textinput.value = ""
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
